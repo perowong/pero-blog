@@ -3,25 +3,14 @@ import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
+import Footer from "../components/footer"
 import Seo from "../components/seo"
+
+import { formatReadingTime } from "../utils/helper"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes
-
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="Pero's blog" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -44,7 +33,10 @@ const BlogIndex = ({ data, location }) => {
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
-                  <small>{post.frontmatter.date}</small>
+                  <small>
+                    {post.frontmatter.date}
+                    {` • ${formatReadingTime(post.timeToRead)}`}
+                  </small>
                 </header>
                 <section>
                   <p
@@ -59,6 +51,7 @@ const BlogIndex = ({ data, location }) => {
           )
         })}
       </ol>
+      <Footer />
     </Layout>
   )
 }
@@ -83,6 +76,7 @@ export const pageQuery = graphql`
           title
           description
         }
+        timeToRead
       }
     }
   }
