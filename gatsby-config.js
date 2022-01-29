@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Pero Wong`,
+    title: `Pero's space`,
     author: {
       name: `Pero Wong`,
-      summary: `A guy think code and product in startup`,
+      summary: `A guy that thinks code and product in startup`,
     },
     description: `A blog by Pero`,
     siteUrl: `http://perowong.space/`,
