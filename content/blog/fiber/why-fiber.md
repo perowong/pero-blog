@@ -4,13 +4,13 @@ date: "2022-01-29"
 description: Fiber 解决了什么问题，是怎么解决的？
 ---
 
-Fiber在2017年出来后，引起了不小的
+React发布v16时，对v15核心算法的reconciliation进行了重构，并命名为之React Fiber
 
-
+那么为什么react团队要对架构进行重构？Fiber又是什么？我们从v15存在的瓶颈说起
 
 ### 1）Fiber要解决的问题是什么
 
-问题
+
 
 #### 1.1）这些问题是怎么引起的
 
