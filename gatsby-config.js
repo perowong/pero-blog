@@ -8,7 +8,7 @@ module.exports = {
     description: `A blog by Pero`,
     siteUrl: `http://perowong.space/`,
     social: {
-      twitter: `perowong`,
+      twitter: `@perowong`,
     },
   },
   plugins: [

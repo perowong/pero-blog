@@ -54,12 +54,23 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
+  --blue-0: #005b99;
+  --blue-1: #80ADCC;
+  --blue-2: #C0D6E6;
+  --blue-3: #E0EBF3;
+  --blue-4: #F0F5F9;
+  --orange-0: #FF715B;
+  --orange-1: #FFB8AD;
+  --orange-2: #FFDCD6;
+  --orange-3: #FFEEEB;
+  --color-primary: var(--blue-0);
   --color-text: #2e353f;
   --color-text-light: #4f5969;
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+  --inlineCode-bg: var(--orange-3);
+  --inlineCode-text: #1a1a1a;
 }
 
 /* HTML elements */
@@ -202,7 +213,7 @@ blockquote {
   margin-right: var(--spacing-8);
   padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6);
   border-left: var(--spacing-1) solid var(--color-primary);
-  font-size: var(--fontSize-2);
+  font-size: var(--fontSize-1);
   font-style: italic;
   margin-bottom: var(--spacing-8);
 }
@@ -243,26 +254,27 @@ a:focus {
  */
  code[class*='language-'],
  pre[class*='language-'] {
-   color: white;
-   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
-  font-size: 13.6px !important;
-   font-feature-settings: normal;
-   text-align: left;
-   white-space: pre;
-   word-spacing: normal;
-   word-break: normal;
-   word-wrap: normal;
-   line-height: 1.5;
-   margin-bottom: 0;
- 
-   -moz-tab-size: 4;
-   -o-tab-size: 4;
-   tab-size: 4;
- 
-   -webkit-hyphens: none;
-   -moz-hyphens: none;
-   -ms-hyphens: none;
-   hyphens: none;
+    color: white;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    font-size: 13.6px !important;
+    font-feature-settings: normal;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
  }
  
  /* Code blocks */
@@ -447,8 +459,8 @@ a:focus {
   font-family: var(--font-heading);
   text-decoration: none;
   font-size: var(--fontSize-3);
-  font-weight: 900;
-  color: rgba(0, 91, 153, 0.7);
+  font-weight: var(--fontWeight-black);
+  color: var(--blue-1);
 }
 
 .bio {
@@ -482,6 +494,11 @@ a:focus {
 
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
+}
+
+.gatsby-resp-image-background-image,
+.gatsby-resp-image-image {
+  border-radius: 6px;
 }
 
 /* Media queries */
