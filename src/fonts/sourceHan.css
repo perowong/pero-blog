@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'SourceHanSerif-Regular';
-  src: url(./files/SourceHanSerifCN-Regular.woff) format('woff'),
-      url(./files/SourceHanSerifCN-Regular.ttf) format('ttf');
+  src: url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Regular.d2eccf41.woff") format('woff'),
+      url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Regular.0b542717.ttf") format('ttf');
 }
 
 /* @font-face {
