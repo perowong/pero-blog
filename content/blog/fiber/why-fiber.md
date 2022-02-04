@@ -12,7 +12,7 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 
 ![dom tree mutation](./dom-tree-mutation.gif)
 
-这是 React Conf 上 [Lin Clark](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0&index=6) 介绍 Fiber 时开场引入的一段动画。动画左半部分展示了 v15 版本下应对大量渲染工作时（Stack Example），出现掉帧卡顿的现象。而同样 DOM 结构下的 Fiber 架构版本则（右半部分）显现出平滑的渲染效果（Fiber Example）。
+这是 React Conf 上 [Lin Clark](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0&index=6) 介绍 Fiber 时开场引入的一段动画。动画左半部分展示了 v15 版本下应对大量渲染工作时（Stack Example），出现掉帧卡顿的现象。而同样 DOM 结构下的 Fiber 架构版本（右半部分）则显现出平滑的渲染效果（Fiber Example）。
 
 到这，我们大概知道了，Fiber 架构主要是为了解决处理非常庞大的渲染工作时，UI 上能感知到的掉帧卡顿现象，而出现。
 
@@ -41,7 +41,7 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 
 上面提到 DOM 树庞大到一定程度更新时会出现掉帧，那一定程度是多少程度？一般来说，按浏览器每秒刷新 60 次来算（即所谓的 60 FPS），当页面需要连续渲染，却在下一个 16ms 内没有渲染的情况下，就会出现掉帧的现象。也就是说，如果浏览器假如有计算执行任务阻塞了浏览器渲染，且阻塞时间超过 16ms ，就会出现卡顿掉帧被人眼所感知到。
 
-我们都知道，JS 是单线程的，在默认情况下，JS 运算、页面绘制渲染都是运行在浏览器的主线程当中，它们之间是互斥的关系，即任何时候只能有一个占用主线程。如果 JS 运算长时间持续占用主线程，页面就没法得到及时的更新。如 *1.1.1）stack reconciler 不能中途被打断* 所示，只要 stack reconciler 持续使用主线程的时间，超过 16ms，页面绘制渲染就没法获得控制权，就容易出现渲染掉帧的现象。
+我们都知道，JS 是单线程的，在默认情况下，JS 运算、页面绘制渲染都是运行在浏览器的主线程当中，它们之间是互斥的关系，即任何时候只能有一个占用主线程。如果 JS 运算长时间持续占用主线程，页面就没法得到及时的更新。如 **1.1.1）stack reconciler 不能中途被打断** 所示，只要 stack reconciler 持续使用主线程的时间，超过 16ms，页面绘制渲染就没法获得控制权，就容易出现渲染掉帧的现象。
 
 ### 2）对应的解决方案
 

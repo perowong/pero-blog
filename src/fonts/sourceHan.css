@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'SourceHanSerif-Regular';
+  src: url(./files/SourceHanSerifCN-Regular.woff) format('woff'),
+      url(./files/SourceHanSerifCN-Regular.ttf) format('ttf');
+}
+
+/* @font-face {
+  font-family: 'SourceHanSerif-SemiBold';
+  src: url(./files/SourceHanSerifCN-SemiBold.woff) format('woff'),
+      url(./files/SourceHanSerifCN-SemiBold.ttf) format('ttf');
+} */
