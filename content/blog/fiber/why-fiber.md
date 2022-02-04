@@ -52,9 +52,9 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 
 Lin Clark 给我们展示了另一段动画
 
-![scheduler](./scheduler.jpg)
+![reconciler](./reconciler.jpg)
 
-> 由于视频太长，我们示意其中几个关键图
+> 视频太长，我们示意其中几个关键图
 
 React 团队引入了一个角色：**Scheduler**
 
