@@ -1,30 +1,35 @@
 ---
 title: Why Fiber
 date: "2022-01-29"
-description: Fiber 解决了什么问题，是怎么解决的？
+description: Fiber 解决了什么问题，是怎么解决的
 ---
 
-React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并命名为之 React Fiber。为什么 react 团队要对架构进行重构，Fiber 架构解决了什么？我们从 v15 存在的瓶颈说起
+React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并命名为之 React Fiber。  
+为什么 react 团队要对架构进行重构，Fiber 架构解决了什么？我们从 v15 存在的瓶颈说起
 
 ### 1）Fiber 要解决的问题
 
-我们先来看一段 Cartoon
-
-![dom tree mutation](./dom-tree-mutation.gif)
-
+我们先来看一段 Cartoon  
+![dom tree mutation](./assets/dom-tree-mutation.gif)  
 这是 React Conf 上 [Lin Clark](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0&index=6) 介绍 Fiber 时开场引入的一段动画。动画左半部分展示了 v15 版本下应对大量渲染工作时（Stack Example），出现掉帧卡顿的现象。而同样 DOM 结构下的 Fiber 架构版本（右半部分）则显现出平滑的渲染效果（Fiber Example）。
 
 到这，我们大概知道了，Fiber 架构主要是为了解决处理非常庞大的渲染工作时，UI 上能感知到的掉帧卡顿现象，而出现。
 
 #### 1.1）这个问题是怎么引起的
 
-为什么会有这个问题？我们先简单看下 v15 架构，分为三层：
+为什么会有这个问题？我们先简单看下 v15 架构，分为两层：
 
-- Virtual DOM —— 描述页面长什么样
 - Reconciler（协调器）—— 负责进行 Diff 运算，调用组件生命周期方法等
-- Rerender（渲染器）——负责将变化的组件渲染到页面上，按平台分主要分为 ReactDOM、ReactNative
+- Renderer（渲染器）——负责将变化的组件渲染到页面上（分平台主要有 ReactDOM、ReactNative）
 
-其中，在 React v15 中，reconciler 是 Stack Reconciler，stack reconciler 是不能中途打断，需要跟递归的堆栈挨个执行完，直至栈空。这样的话，在组件树像上面 Cartoon 演示那样，庞大到一定程度，且在不断更新组件状态的时候，就有可能出现掉帧的现象。
+每当有更新发生时，Reconciler 会做如下工作：
+
+- 调用函数组件的 render 方法，将返回的 JSX 转化为 Virtual DOM
+- 将 Virtual DOM 和上次更新时的 Virtual DOM 进行对比
+- 通过 Diff 找出差异
+- 通知 Renderer，将变化的 Virtual DOM 渲染到页面上
+
+其中，在 React v15 中，reconciler 是不能中途被打断的（Stack Reconciler），需要将递归调用的堆栈挨个执行完，直至栈空。这样的话，当组件树像上面 Cartoon 演示那样，层级很深、庞大到一定程度，且在不断更新组件状态的时候，就有可能出现掉帧的现象。
 
 我们来看这两个`关键点`：
 
@@ -33,9 +38,9 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 
 ##### 1.1.1）stack reconciler 不能中途被打断
 
-大家知道，React render 函数是从 App Root 根节点以树状结构逐层展开的，其构建出来的是一颗 Virtual DOM 树。当要更新状态重绘组件时，React v15 的 reconciler 会同时遍历两个字元素列表 Virtual DOM，Diff 差异，当产生差异时，生成一个 mutation，更新渲染组件。这里的遍历使用的是树常用的递归遍历，只要有子节点，会一直保持迭代，直至处理完所有节点，堆栈为空，退出迭代（故 React 团队也称这个 reconsiler 为 stack reconciler）。其中，整个过程的 JS 计算，会一直占据浏览器主线程。
-
-![stack](./stack.jpg)
+由上，我们知道，React 在组件的 render 函数里通过 JSX 描述 DOM 树，是从 App Root 根节点以树状结构逐层展开的，其构建出来的是一颗 Virtual DOM 树。当要更新状态重绘组件时，React v15 的 reconciler 会同时遍历两个新旧子元素列表 Virtual DOM，Diff 差异，当产生差异时，生成一个 mutation，通知 Renderer 更新渲染组件。  
+其中，这里的遍历使用的是树常用的递归遍历，只要有子节点，会一直保持迭代，直至处理完所有节点，堆栈为空，才退出堆栈（故 React 团队也称这个 reconsiler 为 stack reconciler）。其中，整个过程的 JS 计算，会一直占据浏览器主线程。  
+![stack](./assets/stack.jpg)
 
 ##### 1.1.2）浏览器为什么会出现掉帧
 
@@ -50,20 +55,20 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 - reconciler 在协调的时候能否被打断暂停
 - 进行 DOM diff 时，如何在 16ms 时间窗内不阻塞浏览器渲染
 
-Lin Clark 给我们展示了另一段动画
+Lin Clark 给我们展示了另一段动画  
+![reconciler](./assets/reconciler.jpg)
 
-![reconciler](./reconciler.jpg)
+> 视频太长，我们示意其中几个关键图  
+> 几句关键对话：  
+> “**React**: Hey, main thread... let me know when you have some spare scycles. We hanve an update to do, but its not urgent.  
+> **Main thread**: Ok, ready, we have 13 millseconds until I have to get back.  
+> ... when time is run out  
+> **React**: Meet me back here when you are done?  
+> **Main thread**: Sure.”
 
-> 视频太长，我们示意其中几个关键图
+从图中我们可以看出来，v16 的 React 在代码和 main thread（主线程）之间的角色协调控制能力更强，在有更新任务的时候，会去“询问”获取得到 main thread 的空闲时间周期，在一个 work loop（工作循环）内，逐个处理 work unit，并且判断剩余时间是否充足（此外，还会判断是否有高优先级的任务，截图里未示意），进而决定继续处理、挂起、或者完成工作循环。
+图中示意的是，React 获取到了主线程 13ms 的空闲时间，一起进入到一个工作循环中，完成了 List、button、div、Item 这几个 work unit，但是当完成 Item 这个 work unit 之后，时间用尽，React 按下了“暂停”，归还主线程 worker 控制权给浏览器，并告诉其完成其他工作之后回来到“老地方”接着继续。
 
-React 团队引入了一个角色：**Scheduler**
+以上，两个卡顿的核心问题有了解法：将运算进行切割，切分为多个 work unit（工作单元），分批完成。在完成一部分 work unit 之后（前提是还有剩余的工作未完成，但时间用尽），将主线程控制权交回给浏览器，让浏览器在 16ms 后如果有 UI 渲染工作要做的话，能占用主线程有时间去做，而不像之前主线程被 stack 递归栈一直霸占着。在浏览器使用主线程完成渲染工作，有空闲时间后，再回到之前未完成的任务点继续完成剩余的 work unit。
 
-### 3）What's Fiber
-
-"Fiber is a plain object, that has a one to one relationship, manage the work for an instance. So it keeps the track of which instance is for using property state node, it also keeps the track of its relationships to other fibers in the tree."
-
-Fiber 是一种数据结构，是一个链表结构，用于跟踪
-
-#### 3.1）Fiber 是怎么设计的
-
-#### 3.2）Fiber 为什么要设计成链表树
+分析到这，基本 Fiber 要解决的问题，以及如何解决的基本思路就清晰了，下一篇 **What's Fiber** 来聊聊 Fiber 具体是如何设计的，具体到细节上如何工作的，以及为什么 React 在更新 v16 后不推荐在 componentWillMount 阶段进行异步数据获取（当然，今天的 React 已经将 componentWillMount 废弃了 😅）
