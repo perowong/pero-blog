@@ -39,10 +39,6 @@ const Seo = ({ description, lang, meta, title }) => {
       titleTemplate={defaultTitle ? `%s — ${defaultTitle}` : null}
       meta={[
         {
-          name: 'viewport',
-          content: 'width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0'
-        },
-        {
           name: `description`,
           content: metaDescription,
         },

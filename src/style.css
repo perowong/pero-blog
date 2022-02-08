@@ -392,8 +392,8 @@ a:focus {
  .gatsby-highlight-code-line {
    background-color: hsla(207, 95%, 15%, 1);
    display: block;
-   margin-right: -1.3125rem;
-   margin-left: -1.3125rem;
+   margin-right: calc(-1 * var(--spacing-5));
+   margin-left: calc(-1 * var(--spacing-5));
    padding-right: 1em;
    padding-left: 1.25em;
    border-left: 0.25em solid #ffa7c4;
@@ -401,8 +401,8 @@ a:focus {
  
  .gatsby-highlight {
    margin-bottom: 1.75rem;
-   margin-left: -1.3125rem;
-   margin-right: -1.3125rem;
+   margin-left: calc(-1 * var(--spacing-5));
+   margin-right: calc(-1 * var(--spacing-5));
    border-radius: 10px;
    background: #011627;
    -webkit-overflow-scrolling: touch;
