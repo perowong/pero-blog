@@ -168,6 +168,14 @@ h6 > a {
   color: inherit;
 }
 
+h2 > code,
+h3 > code,
+h4 > code,
+h5 > code,
+h6 > code {
+  font-size: inherit !important;
+}
+
 /* Prose */
 
 p {
@@ -255,8 +263,8 @@ a:focus {
  code[class*='language-'],
  pre[class*='language-'] {
     color: white;
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
-    font-size: 13.6px !important;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 13.6px;
     font-feature-settings: normal;
     text-align: left;
     white-space: pre;
@@ -477,6 +485,9 @@ a:focus {
   margin-bottom: var(--spacing-0);
   min-width: 50px;
   border-radius: 100%;
+}
+.bio-avatar img {
+  border-radius: 50%;
 }
 
 .blog-post header h1 {
