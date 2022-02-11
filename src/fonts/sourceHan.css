@@ -1,7 +1,13 @@
-@font-face {
+/* @font-face {
   font-family: 'SourceHanSerif-Regular';
   src: url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Regular.d2eccf41.woff") format('woff'),
       url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Regular.0b542717.ttf") format('ttf');
+} */
+
+@font-face {
+  font-family: 'SourceHanSerif-Medium';
+  src: url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Medium.woff") format('woff'),
+      url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Medium.ttf") format('ttf');
 }
 
 /* @font-face {

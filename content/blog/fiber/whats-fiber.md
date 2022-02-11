@@ -28,8 +28,8 @@ Fiber 要实现的就是能打断调用栈（call stack）及手动操纵栈帧�
 ### Structure of Fiber
 
 我们先看 Fiber 的最最基础的原子形态。Fiber 被定义为一个数据结构，一个包含 component、input、output 等信息的 JavaScript object  
-一个 Fiber 单元，既和 stack frame 相对应，也和组件的实例相对应  
-我们具体看几个关键的字段（以下只是 Fiber 的一部分字段）
+一个 Fiber 单元，既和 stack frame 相对应，也和组件的实例相对应。其完整的数据结构在 [ReactFiber](https://github.com/facebook/react/blob/6e4f7c788603dac7fccd227a4852c110b072fe16/packages/react-reconciler/src/ReactFiber.js#L78)  
+我们具体看其中几个关键的字段
 
 ```js
 {
@@ -42,7 +42,7 @@ Fiber 要实现的就是能打断调用栈（call stack）及手动操纵栈帧�
   memoizedProps,
   pendingWorkPriority,
   alternate,
-  output
+  ...
 }
 ```
 
@@ -81,6 +81,7 @@ function Parent() {
 这样，所有 fiber 之间的关系，就可以通过 child, sibling, return 给描述出来了，构成一个 fiber node 的 linked list
 
 我们再来看一个例子，有如下组件：
+
 ```js
 function B1() {
   return [<C1 />, <C2 />]
@@ -106,8 +107,30 @@ function A1() {
 
 ##### `pendingWorkPriority`
 
+用于标记 React fiber 当前任务优先级，源码中其值定义为 ReactPriorityLevel。除 NoPriority 为 0 外，数字越大表示优先级越低
 
+```js
+const ReactPriorityLevels = {
+  ImmediatePriority: 1,
+  UserBlockingPriority: 2,
+  NormalPriority: 3,
+  LowPriority: 4,
+  IdlePriority: 5,
+  NoPriority: 0,
+}
+```
 
-### Fiber 的工作原理
+##### `alternate`
+
+讲这个字段，要适当引出 react tree 更新过程。所有的 work 都是在 workInProcess tree 的 fiber 上，而屏幕上呈现的是 current tree。当 react 遍历 current tree 的时候，会对 render 方法返回的 React Element 创建一个 alternate（备用）fiber，这些 fiber 节点构成了 workInProcess tree。当 react 处理完所有 work 后，会 flush workInProcess tree 到屏幕上，进而变为 current tree  
+对于每个 fiber 节点的 alternate 字段来说，其用处就是保持对另一颗树对应节点的引用，current tree 上 fiber 节点的 alternate 指向 workInProcess tree 的 fiber 节点，反之亦然
+![alternate](./assets/work-in-process1.jpg)
+
+### General algorithm
+
+React 把任务工作分为两个阶段：phase1 `render/reconciliation` 和 phases2 `commit`
+![phases](./assets/phases.jpg)
+
+其中render阶段是可以中断的，commit阶段是不能中断的
 
 Still under construction...
