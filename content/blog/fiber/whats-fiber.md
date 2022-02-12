@@ -229,6 +229,4 @@ effects list（通过 nextEffect 指针链接的，finishedWork 树中节点的�
 1. 第一部分，执行所有 DOM（Host Component）插入，更新，删除和（Class Component）ref 卸载。然后，React 将 finishedWork 树分配给 FiberRoot，正式将 current 树替换为 workInProgress 树。在替换进入第二部分之前，React 会执行 componentWillUnmount。
 2. 第二部分中，React 调用所有其他生命周期方法（和 ref callback）, 这些方法将会单独执行，因为已经完成了整个树中的所有放置(placement)，更新和删除，所以在 componentDidMount，componentDidUpdate 是在最新的树中完成执行。
 
----
-
 以上我们基本分析完 Fiber 是怎么设计的，如果有后续进一步的分析，我会超链到这里。
