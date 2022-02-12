@@ -66,6 +66,7 @@
   --color-primary: var(--blue-0);
   --color-text: #2e353f;
   --color-text-light: #4f5969;
+  --color-text-link: var(--color-primary);
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
@@ -249,7 +250,7 @@ table thead tr th {
 /* Link */
 
 a {
-  color: var(--color-primary);
+  color: var(--color-text-link);
 }
 
 a:hover,
@@ -515,6 +516,15 @@ a:focus {
 .gatsby-resp-image-background-image,
 .gatsby-resp-image-image {
   border-radius: 6px;
+}
+
+/* These two are for gatsby-remark-autolink-headers: */
+a.anchor {
+  box-shadow: none;
+}
+a.anchor svg[aria-hidden="true"] {
+  stroke: var(--orange-1);
+  stroke-width: 1.3;
 }
 
 /* Media queries */

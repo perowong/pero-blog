@@ -1,7 +1,7 @@
 ---
 title: Why Fiber
 date: "2022-01-29"
-description: Fiber 解决了什么问题，是怎么解决的
+description: "🤖️ Fiber 解决了什么问题，是怎么解决的"
 ---
 
 React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并命名为之 React Fiber。  
@@ -11,7 +11,7 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 
 我们先来看一段 Cartoon  
 ![dom tree mutation](./assets/dom-tree-mutation.gif)  
-这是 React Conf 上 [Lin Clark](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0&index=6) 介绍 Fiber 时开场引入的一段动画。动画左半部分展示了 v15 版本下应对大量渲染工作时（Stack Example），出现掉帧卡顿的现象。而同样 DOM 结构下的 Fiber 架构版本（右半部分）则显现出平滑的渲染效果（Fiber Example）。
+这是在 [React Conf](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0) 上 [Lin Clark](https://www.youtube.com/watch?v=ZCuYPiUIONs&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0&index=6) 介绍 Fiber 时，开场引入的一段动画。动画左半部分展示了 v15 版本下应对大量渲染工作时（Stack Example），出现掉帧卡顿的现象。而同样 DOM 结构下的 Fiber 架构版本（右半部分）则显现出平滑的渲染效果（Fiber Example）。
 
 到这，我们大概知道了，Fiber 架构主要是为了解决处理非常庞大的渲染工作时，UI 上能感知到的掉帧卡顿现象，而出现。
 
@@ -38,7 +38,7 @@ React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并�
 
 ##### 1.1.1）stack reconciler 不能中途被打断
 
-由上，我们知道，React 在组件的 render 函数里通过 JSX 描述 DOM 树，是从 App Root 根节点以树状结构逐层展开的，其构建出来的是一颗 Virtual DOM 树。当要更新状态重绘组件时，React v15 的 reconciler 会同时遍历两个新旧子元素列表 Virtual DOM，Diff 差异，当产生差异时，生成一个 mutation，通知 Renderer 更新渲染组件。  
+由上，我们知道，React 在组件的 render 函数里通过 JSX 描述 DOM 树，是从 App Root 根节点以树状结构逐层展开的，其构建出来的是一棵 Virtual DOM 树。当要更新状态重绘组件时，React v15 的 reconciler 会同时遍历两个新旧子元素列表 Virtual DOM，Diff 差异，当产生差异时，生成一个 mutation，通知 Renderer 更新渲染组件。  
 其中，v15 使用的是 JS 引擎自身的函数调用栈，只要有子节点，会一直保持迭代，直至处理完所有节点，堆栈为空，才退出堆栈（React 团队也称这个 reconsiler 为 stack reconciler）。其中，整个过程的 JS 计算，会一直占据浏览器主线程。  
 ![stack](./assets/stack.jpg)
 
