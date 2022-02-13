@@ -78,7 +78,7 @@ function Parent() {
 对于 Parent 来说，其 child 指向 Child1 组件  
 然后 Child1 的 sibling，指向 Child2 组件
 
-在实际递归过程中，子节点运算完后，应该回到父节点。在 fiber 设计中，节点有一个 return 属性，指向父节点  
+在实际递归过程中，子节点运算完后，应该回到父节点。在 fiber 设计中，节点有一个 return 属性，指向父节点。  
 如果一个 fiber 节点，有多个子节点，那么其下面的所有子节点都会指向该 fiber 节点，比如对于上面这个例子来说，Child1 和 Child2 的 return 都指向 Parent
 
 这样，所有 fiber 之间的关系，就可以通过 child, sibling, return 给描述出来了，构成一个 fiber node 的 linked list
@@ -104,8 +104,8 @@ function A1() {
 
 ##### `pendingProps` and `memoizedProps`
 
-从 React 组件的定义上讲，props 都是函数的参数。对于 pendingProps，是在函数执行之前，即将要改变的 props  
-而 memoizedProps 为上次执行后的 props  
+从 React 组件的定义上讲，props 都是函数的参数。对于 pendingProps，是在函数执行之前，即将要改变的 props。  
+而 memoizedProps 为上次执行后的 props。  
 特别的，如果 pendingProps 等于 memoizedProps，那么表明该 fiber 上一次的 output 输出可以被复用，而不用再次计算，从而阻止了不必要的运算工作
 
 ##### `pendingWorkPriority`
@@ -125,8 +125,8 @@ const ReactPriorityLevels = {
 
 ##### `alternate`
 
-了解这个字段，我们需要了解 fiber 架构下的 react tree 有两棵（该版本的架构下不再提 Virtual DOM 的概念了），一棵是 current tree，另一棵是 workInProcess tree。所有的 work 都是在 workInProcess tree 的 fiber 上进行，而屏幕上呈现的是 current tree。当 react 遍历 current tree 的时候，会对 render 方法返回的 React Element 创建一个 alternate（备用）fiber，这些 fiber 节点构成了 workInProcess tree。当 react 处理完所有 work 后，会 flush workInProcess tree 到屏幕上，进而变为 current tree  
-对于每个 fiber 节点的 alternate 字段来说，其用处就是保持对另一棵树对应节点的引用，current tree 上 fiber 节点的 alternate 指向 workInProcess tree 的 fiber 节点，反之亦然
+了解这个字段，我们需要了解 fiber 架构下的 react tree 有两棵（该版本的架构下不再提 Virtual DOM 的概念了），一棵是 current tree，另一棵是 workInProgress tree。所有的 work 都是在 workInProgress tree 的 fiber 上进行，而屏幕上呈现的是 current tree。当 react 遍历 current tree 的时候，会对 render 方法返回的 React Element 创建一个 alternate（备用）fiber，这些 fiber 节点构成了 workInProgress tree。当 react 处理完所有 work 后，会 flush workInProgress tree 到屏幕上，进而变为 current tree。  
+对于每个 fiber 节点的 alternate 字段来说，其用处就是保持对另一棵树对应节点的引用，current tree 上 fiber 节点的 alternate 指向 workInProgress tree 的 fiber 节点，反之亦然。
 ![alternate](./assets/work-in-process1.jpg)
 
 ### 2) General algorithm
@@ -138,7 +138,7 @@ const ReactPriorityLevels = {
 
 #### 2.1）为什么 render 阶段可以被中断？
 
-在上面解析 Fiber 数据结构的 alternate 字段时候，提到了 workInProcess tree 和 current tree，其中展示在屏幕上的是 current tree，而所有的 work 都在 workInProcess tree 上进行。也就是说，只要 workInProcess tree 不更新到屏幕上，用户对树的改变是不可见的，所以在 render 阶段，如果中断了任务，也不会导致对用户有可见的更改。  
+在上面解析 Fiber 数据结构的 alternate 字段时候，提到了 workInProgress tree 和 current tree，其中展示在屏幕上的是 current tree，而所有的 work 都在 workInProgress tree 上进行。也就是说，只要 workInProgress tree 不更新到屏幕上，用户对树的改变是不可见的，所以在 render 阶段，如果中断了任务，也不会导致对用户有可见的更改。  
 另一个重要点是，render 阶段的执行是设计为**异步执行**的，在 [Why Fiber #2 对应的解决方案](https://perowong.space/fiber/why-fiber/#2对应的解决方案) 分析过，React 根据可用时间来处理 fiber 节点，以及根据时间决定是否要暂停工作，让出主线程控制权给浏览器处理其他事件，等处理完之后，再从停止的地方继续（有的时候也会丢弃完成的工作从头再来，比如又更高优先级的任务插入）。  
 BTW，在 commit 阶段不能中断，是因为执行是同步的，在此阶段执行的工作，会生成用户可见的变化（比如 DOM 更新），React 需要一次完成。
 
@@ -199,7 +199,7 @@ React 用 firstEffect 表示链表开始的位置，用 nextEffect 表示下一�
 render phase 再深入去分析，还有一些有趣的问题：
 
 - work loop 工作和暂停代码上如何实现？
-- workInprocess tree 如何遍历？
+- workInProgress tree 如何遍历？
 - 一个 work unit 具体有哪些工作要做？
 - 如何 diff 得出 fiber 节点要增/改/删的标记？
 
