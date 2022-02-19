@@ -2,6 +2,7 @@
 title: What's Fiber
 date: "2022-02-04"
 description: "🤖️ Fiber 具体是如何设计的，如何实现的"
+banner: "https://static2.perowong.space/whats-fiber.jpg"
 ---
 
 上一篇 [Why Fiber](https://perowong.space/fiber/why-fiber) 我们聊了 Fiber 解决了什么问题，以及解题的基本思路。我们继续看看，Fiber 具体是如何设计的。  

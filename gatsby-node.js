@@ -95,6 +95,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Social {
       twitter: String
+      twitterBanner: String
     }
 
     type MarkdownRemark implements Node {
@@ -106,6 +107,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+      banner: String
     }
 
     type Fields {

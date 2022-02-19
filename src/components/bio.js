@@ -7,7 +7,7 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import profilePic from '../images/profile-pic.jpg'
+import profilePic from "../images/profile-pic.jpg"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -32,11 +32,7 @@ const Bio = () => {
 
   return (
     <div className="bio">
-      <img
-        src={profilePic}
-        alt={`Pero Wong`}
-        className='bio-avatar'
-      />
+      <img src={profilePic} alt={`Pero Wong`} className="bio-avatar" />
       {author?.name && (
         <p>
           Personal blog by {` `}

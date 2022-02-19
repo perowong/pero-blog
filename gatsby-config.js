@@ -6,9 +6,10 @@ module.exports = {
       summary: `A guy that thinks code and product in startup.`,
     },
     description: `A blog by Pero`,
-    siteUrl: `http://perowong.space/`,
+    siteUrl: `https://perowong.space/`,
     social: {
       twitter: `@perowong`,
+      twitterBanner: `https://static2.perowong.space/banner.png`,
     },
   },
   plugins: [
