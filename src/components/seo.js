@@ -50,6 +50,10 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
           content: metaDescription,
         },
         {
+          name: `image`,
+          content: bannerImgURL || site.siteMetadata?.social?.twitterBanner,
+        },
+        {
           property: `og:title`,
           content: title,
         },
@@ -59,7 +63,11 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: `article`,
+        },
+        {
+          property: `og:iamge`,
+          content: bannerImgURL || site.siteMetadata?.social?.twitterBanner,
         },
         {
           name: `twitter:card`,
