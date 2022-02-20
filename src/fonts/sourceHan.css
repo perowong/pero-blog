@@ -8,6 +8,7 @@
   font-family: 'SourceHanSerif-Medium';
   src: url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Medium.woff") format('woff'),
       url("https://static2.xiaoniangao.cn/web/tia/syy/static/media/SourceHanSerifCN-Medium.ttf") format('ttf');
+  font-display: swap;
 }
 
 /* @font-face {

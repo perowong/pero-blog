@@ -6,7 +6,7 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import profilePic from "../images/profile-pic.jpg"
 
 const Bio = () => {
@@ -32,7 +32,9 @@ const Bio = () => {
 
   return (
     <div className="bio">
-      <img src={profilePic} alt={`Pero Wong`} className="bio-avatar" />
+      <Link to="/">
+        <img src={profilePic} alt={`Pero Wong`} className="bio-avatar" />
+      </Link>
       {author?.name && (
         <p>
           Personal blog by {` `}
