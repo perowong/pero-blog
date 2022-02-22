@@ -66,7 +66,7 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
           content: `article`,
         },
         {
-          property: `og:iamge`,
+          property: `og:image`,
           content: bannerImgURL || site.siteMetadata?.social?.twitterBanner,
         },
         {
