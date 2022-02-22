@@ -63,11 +63,15 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
         },
         {
           property: `og:type`,
-          content: `article`,
+          content: `website`,
         },
         {
           property: `og:image`,
           content: bannerImgURL || site.siteMetadata?.social?.twitterBanner,
+        },
+        {
+          property: `og:url`,
+          content: window.location.href,
         },
         {
           name: `twitter:card`,
