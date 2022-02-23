@@ -71,7 +71,7 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
         },
         {
           property: `og:url`,
-          content: window.location.href,
+          content: window ? window?.location.href : '',
         },
         {
           name: `twitter:card`,
