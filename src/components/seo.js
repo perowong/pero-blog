@@ -10,9 +10,14 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-const isBrowser = () => typeof window !== "undefined"
-
-const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
+const Seo = ({
+  description, 
+  lang, 
+  meta, 
+  title, 
+  bannerImgURL, 
+  pathname
+}) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -20,6 +25,7 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
           siteMetadata {
             title
             description
+            siteUrl
             social {
               twitter
               twitterBanner
@@ -32,8 +38,9 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
 
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+  const siteUrl = site.siteMetadata?.siteUrl
 
-  console.log(site.siteMetadata)
+  const url = `${siteUrl}${pathname || '/'}`
 
   return (
     <Helmet
@@ -56,6 +63,10 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
           content: bannerImgURL || site.siteMetadata?.social?.twitterBanner,
         },
         {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
           property: `og:title`,
           content: title,
         },
@@ -64,16 +75,20 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
           property: `og:image`,
           content: bannerImgURL || site.siteMetadata?.social?.twitterBanner,
         },
         {
+          property: `og:image:width`,
+          content: 1000,
+        },
+        {
+          property: `og:image:height`,
+          content: 500,
+        },
+        {
           property: `og:url`,
-          content: isBrowser() ? window?.location.href : '',
+          content: url,
         },
         {
           name: `twitter:card`,
@@ -108,6 +123,8 @@ Seo.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
+  bannerImgURL: ``,
+  pathname: ``,
 }
 
 Seo.propTypes = {
@@ -115,6 +132,8 @@ Seo.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
+  bannerImgURL: PropTypes.string,
 }
 
 export default Seo
