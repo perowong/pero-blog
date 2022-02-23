@@ -10,6 +10,8 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+const isBrowser = () => typeof window !== "undefined"
+
 const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -71,7 +73,7 @@ const Seo = ({ description, lang, meta, title, bannerImgURL }) => {
         },
         {
           property: `og:url`,
-          content: window ? window?.location.href : '',
+          content: isBrowser() ? window?.location.href : '',
         },
         {
           name: `twitter:card`,
