@@ -41,6 +41,8 @@
   --fontWeight-extrabold: 800;
   --fontWeight-black: 900;
   --fontSize-root: 16px;
+  --fontSize-root-2x: 17px;
+  --fontSize-root-3x: 18px;
   --lineHeight-none: 1;
   --lineHeight-tight: 1.1;
   --lineHeight-normal: 1.5;
@@ -87,6 +89,24 @@ html {
   font-size: var(--fontSize-root);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (-webkit-min-device-pixel-ratio: 1), (min-resolution: 96dpi) {
+  html {
+    font-size: var(--fontSize-root);
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  html {
+    font-size: var(--fontSize-root-2x);
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 287dpi) {
+  html {
+    font-size: var(--fontSize-root-3x);
+  }
 }
 
 body {
