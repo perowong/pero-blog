@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: `https://overio.space`,
     social: {
       twitter: `@perowong`,
-      twitterBanner: `https://static2.perowong.space/banner.png`,
+      twitterBanner: `https://static2.overio.space/banner.png`,
     },
   },
   plugins: [

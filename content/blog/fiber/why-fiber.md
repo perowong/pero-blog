@@ -2,7 +2,7 @@
 title: Why Fiber
 date: "2022-01-29"
 description: "🤖️ Fiber 解决了什么问题，是怎么解决的"
-banner: "https://static2.perowong.space/why-fiber.jpg"
+banner: "https://static2.overio.space/why-fiber.jpg"
 ---
 
 React 发布 v16 时，对其核心算法 reconciliation 进行了重构，并命名为之 React Fiber。  
