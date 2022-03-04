@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/perowong`,
   siteMetadata: {
     title: `Pero's space`,
     author: {
@@ -6,7 +7,7 @@ module.exports = {
       summary: `A guy that thinks code and product in startup.`,
     },
     description: `A blog by Pero`,
-    siteUrl: `https://i.perowong.space`,
+    siteUrl: `https://overio.space`,
     social: {
       twitter: `@perowong`,
       twitterBanner: `https://static2.perowong.space/banner.png`,
