@@ -65,6 +65,7 @@
   --orange-1: #FFB8AD;
   --orange-2: #FFDCD6;
   --orange-3: #FFEEEB;
+  --pink: #ffa7c4;
   --color-primary: var(--blue-0);
   --color-text: #2e353f;
   --color-text-light: #4f5969;
@@ -72,6 +73,8 @@
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+  --color-header-link-home: var(--blue-1);
+  --color-link-stroke: var(--orange-1);
   --inlineCode-bg: var(--orange-3);
   --inlineCode-text: #1a1a1a;
 }
@@ -113,6 +116,37 @@ body {
   font-family: var(--font-body);
   font-size: var(--fontSize-1);
   color: var(--color-text);
+  background-color: var(--bg);
+}
+
+body.light {
+  --bg: #ffffff;
+  --color-primary: var(--blue-0);
+  --color-text: #2e353f;
+  --color-text-light: #4f5969;
+  --color-text-link: var(--color-primary);
+  --color-heading: #1a202c;
+  --color-heading-black: black;
+  --color-header-link-home: var(--blue-1);
+  --color-link-stroke: var(--orange-1);
+  --inlineCode-bg: var(--orange-3);
+  --inlineCode-text: #1a1a1a;
+}
+
+body.dark {
+  -webkit-font-smoothing: antialiased;
+
+  --bg: #282c35;
+  --color-primary: var(--pink);
+  --color-text: rgba(255, 255, 255, 0.88);
+  --color-text-light: rgba(255, 255, 255, 0.65);
+  --color-text-link: var(--color-primary);
+  --color-heading: #ffffff;
+  --color-heading-black: #ffffff;
+  --color-header-link-home: var(--color-primary);
+  --color-link-stroke: var(--color-primary);
+  --inlineCode-bg: rgba(115, 124, 153, 0.2);
+  --inlineCode-text: #e6e6e6;
 }
 
 footer {
@@ -494,7 +528,7 @@ a:focus {
   text-decoration: none;
   font-size: var(--fontSize-3);
   font-weight: var(--fontWeight-black);
-  color: var(--blue-1);
+  color: var(--color-header-link-home);
 }
 
 .bio {
@@ -523,8 +557,8 @@ a:focus {
 }
 
 .blog-post header p {
-  font-size: var(--fontSize-2);
-  font-family: var(--font-heading);
+  font-size: var(--fontSize-0);
+  /* font-family: var(--font-heading); */
 }
 
 .blog-post-nav ul {
@@ -538,6 +572,7 @@ a:focus {
 .gatsby-resp-image-background-image,
 .gatsby-resp-image-image {
   border-radius: 6px;
+  margin: 0.65rem 0;
 }
 
 /* These two are for gatsby-remark-autolink-headers: */
@@ -545,7 +580,7 @@ a.anchor {
   box-shadow: none;
 }
 a.anchor svg[aria-hidden="true"] {
-  stroke: var(--orange-1);
+  stroke: var(--color-link-stroke);
   stroke-width: 1.3;
 }
 
