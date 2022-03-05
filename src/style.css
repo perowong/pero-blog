@@ -127,6 +127,7 @@ body.light {
   --color-text-link: var(--color-primary);
   --color-heading: #1a202c;
   --color-heading-black: black;
+  --color-accent: #d1dce5;
   --color-header-link-home: var(--blue-1);
   --color-link-stroke: var(--orange-1);
   --inlineCode-bg: var(--orange-3);
@@ -139,10 +140,11 @@ body.dark {
   --bg: #282c35;
   --color-primary: var(--pink);
   --color-text: rgba(255, 255, 255, 0.88);
-  --color-text-light: rgba(255, 255, 255, 0.65);
+  --color-text-light: rgba(255, 255, 255, 0.68);
   --color-text-link: var(--color-primary);
   --color-heading: #ffffff;
   --color-heading-black: #ffffff;
+  --color-accent: #4f555a;
   --color-header-link-home: var(--color-primary);
   --color-link-stroke: var(--color-primary);
   --inlineCode-bg: rgba(115, 124, 153, 0.2);
