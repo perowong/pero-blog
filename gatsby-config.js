@@ -6,7 +6,7 @@ module.exports = {
       summary: `A guy that thinks code and product in startup.`,
     },
     description: `A blog by Pero`,
-    siteUrl: `https://overio.space`,
+    siteUrl: `https://i.overio.space`,
     social: {
       twitter: `@perowong`,
       twitterBanner: `https://static2.overio.space/banner.png`,
