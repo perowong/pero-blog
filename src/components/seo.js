@@ -35,17 +35,6 @@ const Seo = ({ description, lang, meta, title, bannerImgURL, pathname }) => {
 
   const url = `${siteUrl}${pathname || "/"}`
 
-  const [theme, setTheme] = React.useState(null)
-
-  React.useEffect(() => {
-    setTheme(window.__theme)
-    window.__onThemeChange = () => {
-      setTheme(window.__theme)
-    };
-  }, [])
-
-  console.log(theme)
-
   return (
     <Helmet
       htmlAttributes={{
@@ -54,10 +43,6 @@ const Seo = ({ description, lang, meta, title, bannerImgURL, pathname }) => {
       title={title}
       titleTemplate={defaultTitle ? `%s — ${defaultTitle}` : null}
       meta={[
-        {
-          name: `theme-color`,
-          content: theme === 'light' ? '#005b99' : '#282c35',
-        },
         {
           name: `title`,
           content: title,
