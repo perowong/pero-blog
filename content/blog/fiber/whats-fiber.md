@@ -5,7 +5,7 @@ description: "🤖️ Fiber 具体是如何设计的，如何实现的"
 banner: "https://static2.overio.space/whats-fiber.jpg"
 ---
 
-上一篇 [Why Fiber](https://overio.space/perowong/fiber/why-fiber) 我们聊了 Fiber 解决了什么问题，以及解题的基本思路。我们继续看看，Fiber 具体是如何设计的。  
+上一篇 [Why Fiber](https://i.overio.space/fiber/why-fiber) 我们聊了 Fiber 解决了什么问题，以及解题的基本思路。我们继续看看，Fiber 具体是如何设计的。  
 我们先看 Lin Clark 在 React Conf 上介绍什么是 Fiber 时说的一段话：
 
 “Fiber is a plain object, that has a one to one relationship, manage the work for an instance. So it keeps the track of which instance is for using property state node, it also keeps the track of its relationships to other fibers in the tree.”  
@@ -18,7 +18,7 @@ ui = f(data)
 ```
 
 即：渲染一个 React App，其本质上就是在调用一个函数，只不过这个函数还会调用其里面的其他函数，形成调用栈。  
-通过 [Why Fiber](https://overio.space/perowong/fiber/why-fiber) 我们了解到，JS 引擎自身的函数调用栈，我们无法控制，只能一条路走到黑。  
+通过 [Why Fiber](https://i.overio.space/fiber/why-fiber) 我们了解到，JS 引擎自身的函数调用栈，我们无法控制，只能一条路走到黑。  
 Fiber 要实现的，还是围绕这个设计的元概念，但是需要能获取新能力：打断调用栈（call stack）及手动操纵栈帧（stack frame）  
 进而能实现如下目标：
 
@@ -140,7 +140,7 @@ const ReactPriorityLevels = {
 #### 2.1）为什么 render 阶段可以被中断？
 
 在上面解析 Fiber 数据结构的 alternate 字段时候，提到了 workInProgress tree 和 current tree，其中展示在屏幕上的是 current tree，而所有的 work 都在 workInProgress tree 上进行。也就是说，只要 workInProgress tree 不更新到屏幕上，用户对树的改变是不可见的，所以在 render 阶段，如果中断了任务，也不会导致对用户有可见的更改。  
-另一个重要点是，render 阶段的执行是设计为**异步执行**的，在 [Why Fiber #2 对应的解决方案](https://overio.space/perowong/fiber/why-fiber/#2对应的解决方案) 分析过，React 根据可用时间来处理 fiber 节点，以及根据时间决定是否要暂停工作，让出主线程控制权给浏览器处理其他事件，等处理完之后，再从停止的地方继续（有的时候也会丢弃完成的工作从头再来，比如又更高优先级的任务插入）。  
+另一个重要点是，render 阶段的执行是设计为**异步执行**的，在 [Why Fiber #2 对应的解决方案](https://i.overio.space/fiber/why-fiber/#2对应的解决方案) 分析过，React 根据可用时间来处理 fiber 节点，以及根据时间决定是否要暂停工作，让出主线程控制权给浏览器处理其他事件，等处理完之后，再从停止的地方继续（有的时候也会丢弃完成的工作从头再来，比如又更高优先级的任务插入）。  
 BTW，在 commit 阶段不能中断，是因为执行是同步的，在此阶段执行的工作，会生成用户可见的变化（比如 DOM 更新），React 需要一次完成。
 
 #### 2.2) Render phase
