@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: `/perowong`,
   siteMetadata: {
     title: `Pero's space`,
     author: {
