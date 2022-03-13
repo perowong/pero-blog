@@ -21,6 +21,13 @@ module.exports = {
         name: `blog`,
       },
     },
+    process.env.NODE_ENV === 'development' && {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/upcoming`,
+        name: `blog`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -131,5 +138,5 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
-  ],
+  ].filter(Boolean),
 }
