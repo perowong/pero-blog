@@ -1,5 +1,5 @@
 ---
-title: Scale from zero to millions users 
+title: Scale from zero to millions users
 date: "2022-04-04"
 description: "🤖 Design a system that supports millions of users is challenging..."
 banner: "https://static2.overio.space/two-sided-marketplaces.jpg"
@@ -40,10 +40,7 @@ Next, let us examine the traffic source. The traffic to your web server comes fr
     "State": "NY",
     "postalCode": 10021
   },
-  "phoneNumbers": [
-    "212 555-1234",
-    "646 555-4567"
-  ]
+  "phoneNumbers": ["212 555-1234", "646 555-4567"]
 }
 ```
 

@@ -21,7 +21,7 @@ module.exports = {
         name: `blog`,
       },
     },
-    process.env.NODE_ENV === 'development' && {
+    process.env.NODE_ENV === "development" && {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/upcoming`,

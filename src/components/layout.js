@@ -13,7 +13,7 @@ const Layout = ({ location, title, children }) => {
     setTheme(window.__theme)
     window.__onThemeChange = () => {
       setTheme(window.__theme)
-    };
+    }
   }, [])
 
   if (isRootPath) {
@@ -36,7 +36,7 @@ const Layout = ({ location, title, children }) => {
         meta={[
           {
             name: `theme-color`,
-            content: theme === 'light' ? '#005b99' : '#282c35',
+            content: theme === "light" ? "#005b99" : "#282c35",
           },
         ]}
       />
