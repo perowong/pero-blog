@@ -27,15 +27,15 @@ export default function HTML(props) {
               }
 
               var preferredTheme;
-              /* try {
+              try {
                 preferredTheme = localStorage.getItem('theme');
-              } catch (err) { } */
+              } catch (err) { }
 
               window.__setPreferredTheme = function(newTheme) {
                 setTheme(newTheme);
-                /* try {
+                try {
                   localStorage.setItem('theme', newTheme);
-                } catch (err) {} */
+                } catch (err) {}
               }
 
               var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
