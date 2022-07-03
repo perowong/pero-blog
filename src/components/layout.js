@@ -53,40 +53,36 @@ const Layout = ({ location, title, children }) => {
         }}
       >
         {header}
-        {theme !== null ? (
-          <Toggle
-            icons={{
-              checked: (
-                <img
-                  src={moon}
-                  width="16"
-                  height="16"
-                  role="presentation"
-                  style={{ pointerEvents: 'none' }}
-                  alt=""
-                />
-              ),
-              unchecked: (
-                <img
-                  src={sun}
-                  width="16"
-                  height="16"
-                  role="presentation"
-                  style={{ pointerEvents: 'none' }}
-                  alt=""
-                />
-              ),
-            }}
-            checked={theme === 'dark'}
-            onChange={e =>
-              window.__setPreferredTheme(
-                e.target.checked ? 'dark' : 'light'
-              )
-            }
-          />
-        ) : (
-          <div style={{ height: '24px' }} />
-        )}
+        <Toggle
+          icons={{
+            checked: (
+              <img
+                src={moon}
+                width="16"
+                height="16"
+                role="presentation"
+                style={{ pointerEvents: 'none' }}
+                alt=""
+              />
+            ),
+            unchecked: (
+              <img
+                src={sun}
+                width="16"
+                height="16"
+                role="presentation"
+                style={{ pointerEvents: 'none' }}
+                alt=""
+              />
+            ),
+          }}
+          checked={theme === 'dark'}
+          onChange={e =>
+            window.__setPreferredTheme(
+              e.target.checked ? 'dark' : 'light'
+            )
+          }
+        />
       </header>
       <main>{children}</main>
     </div>
