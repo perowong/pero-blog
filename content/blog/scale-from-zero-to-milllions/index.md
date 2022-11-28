@@ -5,7 +5,7 @@ description: "🤖 Design a system that supports millions of users is challengin
 banner: "https://static2.overio.space/two-sided-marketplaces.jpg"
 ---
 
-> This is one chapter of Amazon's system design handbook, it's very useful and friendly for freshman;)
+> This is one chapter of Amazon's system design handbook, it's very useful and friendly for freshmen ;)
 
 Designing a system that supports millions of users is challenging, and it is a journey that requires continuous refinement and endless improvement. Here, we build a system that supports a single user and gradually scale it up to serve millions of users.
 
@@ -91,7 +91,7 @@ In Figure 1-4, after a load balancer and a second web server are added, we succe
 - If server 1 goes offline, all the traffic will be routed to server 2. This prevents the website from going offline. We will also add a new healthy web server to the server pool to balance the load.
 - If the website traffic grows rapidly, and two servers are not enough to handle the traffic, the load balancer can handle this problem gracefully. You only need to add more servers to the web server pool, and the load balancer automatically starts to send requests to them.
 
-Now the web tier looks good, what about the data tier? The current design has one database, so it does not support failover and redundancy. Database replication is a common technique to address those problems. Let ud take a look.
+Now the web tier looks good, what about the data tier? The current design has one database, so it does not support failover and redundancy. Database replication is a common technique to address those problems. Let us take a look.
 
 ## Database replication
 
