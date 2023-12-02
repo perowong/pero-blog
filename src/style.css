@@ -30,7 +30,7 @@
   --fontFamily-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --fontFamily-serif: "Merriweather", "SourceHanSerif-Medium", "Georgia", Cambria, "Times New Roman",
+  --fontFamily-serif: "Merriweather", "SourceHanSerif-Regular", "Georgia", Cambria, "Times New Roman",
     Times, serif, system-ui, -apple-system, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-body: var(--fontFamily-serif);
   --font-heading: var(--fontFamily-sans);
@@ -363,7 +363,7 @@ a:focus {
  }
 
  p code, li code {
-  font-family: Consolas, Menlo, Monaco, source-code-pro, "Liberation Mono", "Courier New", monospace !important;
+  font-family: "SourceHanSerif-Regular", Consolas, Menlo, Monaco, source-code-pro, "Liberation Mono", "Courier New", monospace !important;
   font-size: 1rem !important;
  }
  
